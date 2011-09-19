@@ -1,0 +1,54 @@
+= semantic_form_for @contact, :html => { :multipart => true } do |f|
+  -if @contact.errors.any?
+    #error_explanation
+      %ul
+        - @contact.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.input :institution
+  .field
+    = f.input :name
+  .field
+    = f.label :dob
+    = f.text_field :dob, :id => :date_picker, :value => @contact.dob.try(:strftime, '%d/%m/%Y')
+  .field
+    = f.input :site
+  .field
+    = f.input :photo, :as => :file
+  %br
+  .gray_border
+    %span
+      = t('institution.emails')
+  %br
+  - f.fields_for :emails do |builder|
+    = render "/shared/email_fields", :f => builder
+  %br
+  = link_to_add_fields t('email.add'), f, :emails
+  %br
+  .gray_border
+    %span
+      = t('institution.addresses')
+  %br
+  - f.fields_for :addresses do |builder|
+    = render "/shared/address_fields", :f => builder
+  %br
+  = link_to_add_fields t('address.add'), f, :addresses
+  %br
+  .gray_border
+    %span
+      = t('institution.phones')
+  %br
+  - f.fields_for :phones do |builder|
+    = render "/shared/phone_fields", :f => builder
+  %br
+  = link_to_add_fields t('phone.add'), f, :phones
+  %br
+  %br
+  .actions
+    = f.submit button
+
+:javascript
+  jQuery(function(){
+    jQuery('#date_picker').datepicker();
+   });

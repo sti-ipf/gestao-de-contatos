@@ -1,0 +1,52 @@
+.white-box-top
+.white-box-container
+  .content
+    .links{:style => "padding-bottom: 15px;"}
+      .button_div{:style => 'width: 100px;'}
+        = link_to t('back'), contacts_path
+    .avatar
+      = image_tag @contact.photo.url
+    %p
+      %b= t('contact.name')
+      = @contact.name
+    %p 
+      %b= t('contact.institution')
+      = @contact.institution.name if !@contact.institution.nil?
+    %p
+      %b= t('contact.dob')
+      = @contact.dob.strftime('%d/%m/%Y') if !@contact.dob.nil?
+    %p
+      %b= t('contact.site')
+      = link_to @contact.site, @contact.site if !@contact.site.nil?
+    - if @contact.emails.count > 0
+      .gray_border
+        %span
+          = t('institution.emails')
+      %br
+        %ul
+          - @contact.emails.each do |email|
+            %li= mail_to email.address, email.address
+        
+    - if @contact.addresses.count > 0
+      .gray_border
+        %span
+          = t('institution.addresses')
+      %ul
+        - @contact.addresses.each do |address|
+          %li= address.complete.html_safe
+
+    - if @contact.phones.count > 0
+      .gray_border
+        %span
+          = t('institution.phones')
+      %ul
+        - @contact.phones.each do |phone|
+          %li= phone.number
+
+  .clearfix
+
+.white-box-bot
+
+
+
+

@@ -1,0 +1,26 @@
+.white-box-top
+.white-box-container
+  .content
+    %h1= t('institution.list')
+    %table
+      %tr
+        %th= t('institution.name')
+        %th= t('institution.site')
+        %th
+        %th
+        %th
+
+      - @institutions.each do |institution|
+        %tr
+          %td= institution.name
+          %td= institution.site
+          %td= link_to t('show'), institution
+          %td= link_to t('edit'), edit_institution_path(institution)
+          %td= link_to t('destroy'), institution, :confirm => t('are_you_sure'), :method => :delete
+
+    %br
+
+    = link_to t('institution.new'), new_institution_path
+  .clearfix
+
+.white-box-bot

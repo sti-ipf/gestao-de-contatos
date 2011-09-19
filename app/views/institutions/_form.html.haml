@@ -1,0 +1,53 @@
+= semantic_form_for @institution do |f|
+  -if @institution.errors.any?
+    #error_explanation
+      %ul
+        - @institution.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.input :name
+  .field
+    = f.label :mission
+    = f.text_area :mission, :rows => 3, :cols => 80
+  .field
+    = f.label :fundation_at
+    = f.text_field :fundation_at, :id => :date_picker, :value => @institution.fundation_at.try(:strftime, '%d/%m/%Y')
+  .field
+    = f.input :site
+  %br
+  .gray_border
+    %span
+      = t('institution.emails')
+  %br
+  - f.fields_for :emails do |builder|
+    = render "/shared/email_fields", :f => builder
+  %br
+  = link_to_add_fields t('email.add'), f, :emails
+  %br
+  .gray_border
+    %span
+      = t('institution.addresses')
+  %br
+  - f.fields_for :addresses do |builder|
+    = render "/shared/address_fields", :f => builder
+  %br
+  = link_to_add_fields t('address.add'), f, :addresses
+  %br
+  .gray_border
+    %span
+      = t('institution.phones')
+  %br
+  - f.fields_for :phones do |builder|
+    = render "/shared/phone_fields", :f => builder
+  %br
+  = link_to_add_fields t('phone.add'), f, :phones
+  %br
+  %br
+  .actions
+    = f.submit button
+
+:javascript
+  jQuery(function(){
+    jQuery('#date_picker').datepicker();
+   });

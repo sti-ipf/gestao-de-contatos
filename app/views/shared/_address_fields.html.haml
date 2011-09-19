@@ -1,0 +1,18 @@
+.fields
+  .field
+    = f.input :description
+  %br
+  .field
+    = f.input :zip_code, :mask => :cep, :as  => :string
+  %br
+  .field
+    = f.input :city
+  %br
+  .field
+    = f.input :state, :as => :select, :collection => Address::STATES, :selected => "SP"
+  %br
+  .field
+    = f.input :country, :as => :select, :collection => Address::COUNTRIES, :selected => "Brasil"
+  %br
+  = link_to_remove_fields t('remove'), f
+  %br

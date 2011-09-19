@@ -1,0 +1,13 @@
+.fields
+  .field
+    = f.input :number
+  .field
+    - if f.object_name.include?('institution')
+      - collection = Phone::TYPES_FOR_INSTITUTION
+    - else
+      - collection = Phone::TYPES_FOR_CONTACT
+    = f.input :phone_type, :as => :select, :collection => collection
+  %br
+  = link_to_remove_fields t('remove'), f
+
+  %br

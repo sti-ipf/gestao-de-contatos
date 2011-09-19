@@ -1,0 +1,29 @@
+.white-box-top
+.white-box-container
+  .content
+    .links
+      .button_div{:style => 'width: 100px;'}
+        = link_to t('contact.new'), new_contact_path
+    %h1= t('contact.list')
+
+    %table
+      %tr
+        %th= t('contact.name')
+        %th= t('contact.institution')
+        %th= t('contact.email')
+        %th
+        %th
+        %th
+
+      - @contacts.each do |contact|
+        %tr
+          %td= contact.name
+          %td= contact.institution.name if !contact.institution.nil?
+          %td= contact.emails.collect(&:address).join(', ')
+          %td= link_to t('show'), contact
+          %td= link_to t('edit'), edit_contact_path(contact)
+          %td= link_to t('destroy'), contact, :confirm => t('are_you_sure'), :method => :delete
+    
+  .clearfix
+
+.white-box-bot

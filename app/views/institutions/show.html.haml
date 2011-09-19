@@ -1,0 +1,46 @@
+.white-box-top
+.white-box-container
+  .content
+    .links{:style => "padding-bottom: 15px;"}
+      .button_div{:style => 'width: 100px;'}
+        = link_to t('back'), institutions_path
+    %p
+      %b= t('institution.name')
+      = @institution.name
+    %p 
+      %b= t('institution.mission')
+      = @institution.mission
+    %p
+      %b= t('institution.fundation_at')
+      = @institution.fundation_at.strftime('%d/%m/%Y') if !@institution.fundation_at.nil?
+    %p
+      %b= t('institution.site')
+      = link_to @institution.site, @institution.site if !@institution.site.nil?
+    - if @institution.emails.count > 0
+      .gray_border
+        %span
+          = t('institution.emails')
+      %br
+        %ul
+          - @institution.emails.each do |email|
+            %li= mail_to email.address, email.address
+        
+    - if @institution.addresses.count > 0
+      .gray_border
+        %span
+          = t('institution.addresses')
+      %ul
+        - @institution.addresses.each do |address|
+          %li= address.complete.html_safe
+
+    - if @institution.phones.count > 0
+      .gray_border
+        %span
+          = t('institution.phones')
+      %ul
+        - @institution.phones.each do |phone|
+          %li= phone.number
+
+  .clearfix
+
+.white-box-bot

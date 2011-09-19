@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Gestao de Instituições
+    = stylesheet_link_tag "style", "blitzer/jquery-ui-1.8.16.custom.css"
+    - js_files = ['jquery.js', 'jquery.dataTables.min.js', 'rails.js', 'application.js', 'jquery-ui-1.8.16.custom.min.js']
+    - js_files.each do |js_file|
+      = javascript_include_tag js_file
+    = csrf_meta_tag
+  %body
+    .header
+      .logo
+        = image_tag 'logo.png'
+      .menu
+        = link_to 'Instituições', institutions_path
+        &nbsp;|&nbsp;
+        = link_to 'Contatos', contacts_path
+    .wrapper
+      .white-box
+        = yield
