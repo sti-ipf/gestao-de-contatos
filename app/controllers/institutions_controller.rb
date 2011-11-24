@@ -25,10 +25,13 @@ class InstitutionsController < ApplicationController
   # GET /institutions/new.json
   def new
     @institution = Institution.new
-
+    @institution.addresses.build
+    @institution.phones.build
+    @institution.emails.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @institution }
+      format.js
     end
   end
 
@@ -84,6 +87,6 @@ class InstitutionsController < ApplicationController
 protected
 
   def format_date
-    params[:institution][:fundation_at] = Date.strptime(params[:institution][:fundation_at], '%d/%m/%Y') if !params[:institution][:fundation_at].nil?
+    params[:institution][:fundation_at] = Date.strptime(params[:institution][:fundation_at], '%d/%m/%Y') if !params[:institution][:fundation_at].blank?
   end
 end
