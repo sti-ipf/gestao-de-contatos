@@ -12,7 +12,10 @@ function remove_fields(link) {
 }
 
 function add_fields(link, association, content) {
-  content = content.unescapeHtml();
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  
+  content = content.replace(regexp, new_id).unescapeHtml();
   $(content).insertBefore($(link));
 
 }
