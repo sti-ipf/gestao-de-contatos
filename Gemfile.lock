@@ -29,6 +29,9 @@ GEM
       activesupport (= 3.0.9)
     activesupport (3.0.9)
     arel (2.0.10)
+    authlogic (3.1.0)
+      activerecord (>= 3.0.7)
+      activerecord (>= 3.0.7)
     builder (2.1.2)
     cocaine (0.2.0)
     erubis (2.6.6)
@@ -92,6 +95,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic
   fastercsv
   formtastic
   haml

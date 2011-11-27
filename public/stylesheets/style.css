@@ -77,8 +77,12 @@ a:hover{text-decoration: underline;}
 
 .header {
     background: url("/images/header-repeat.png") repeat-x scroll 0 0 transparent;
-    height: 44px;
+    height: 50px;
     width: 100%;
+}
+
+.header a{
+    font-size: 18px;
 }
 
 .white-box {
@@ -259,12 +263,17 @@ table th {
 }
 
 .menu{
-  float: left;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
   font-weight: bold;
-  margin-top: 20px;
+  padding-top: 15px;
 }
 
 .logo{
   float: left;
-  margin-right: 15px;
+  left: 0;
+  position: absolute;
+  top: 0;
 }

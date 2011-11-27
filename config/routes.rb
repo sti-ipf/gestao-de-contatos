@@ -1,4 +1,6 @@
 GestaoDeInstituicoes::Application.routes.draw do
+  resources :users
+
   resources :contacts
 
   resources :emails
@@ -10,6 +12,10 @@ GestaoDeInstituicoes::Application.routes.draw do
   resources :institutions
 
   root :to => 'institutions#index'
+
+  match 'criar_conta' => 'users#new', :as => 'sign_up'
+  match 'login' => 'user_sessions#new', :as => 'sign_in'
+  match 'logout' => 'user_sessions#destroy', :as => 'sign_out'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

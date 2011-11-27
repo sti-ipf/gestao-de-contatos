@@ -1,0 +1,14 @@
+= notice
+.content
+  %h1 Login
+  %br
+  - form_for @user_session do |f|
+    .field
+      = f.label :username, "Usuário"
+      %br
+      = f.text_field :username
+    .field
+      = f.label :password, "Senha"
+      %br
+      = f.password_field :password
+    = f.submit 'Acessar', :disable_with => I18n.t('please_wait')

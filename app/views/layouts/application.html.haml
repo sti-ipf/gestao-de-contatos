@@ -9,12 +9,12 @@
     = csrf_meta_tag
   %body
     .header
-      .logo
-        = image_tag 'logo.png'
       .menu
         = link_to 'Instituições', institutions_path
         &nbsp;|&nbsp;
         = link_to 'Contatos', contacts_path
+      .logo
+        = image_tag 'logo.png'
     .wrapper
       .white-box
         = yield
