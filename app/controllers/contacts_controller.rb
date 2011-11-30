@@ -25,7 +25,9 @@ class ContactsController < ApplicationController
   # GET /contacts/new.xml
   def new
     @contact = Contact.new
-
+    @contact.addresses.build
+    @contact.phones.build
+    @contact.emails.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @contact }
@@ -47,6 +49,9 @@ class ContactsController < ApplicationController
         format.html { redirect_to(contacts_path, :notice => t('contact.created')) }
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
       else
+        @contact.addresses.build
+        @contact.phones.build
+        @contact.emails.build
         format.html { render :action => "new" }
         format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
       end
@@ -84,6 +89,6 @@ class ContactsController < ApplicationController
 protected
 
   def format_date
-    params[:contact][:dob] = Date.strptime(params[:contact][:dob], '%d/%m/%Y') if !params[:contact][:dob].nil?
+    params[:contact][:dob] = Date.strptime(params[:contact][:dob], '%d/%m/%Y') if !params[:contact][:dob].blank?
   end
 end

@@ -39,6 +39,8 @@ pt:
     new: "Nova instituição"
     edit: "Alterar instituição"
     list: "Instituições cadastradas"
+    phone: "Telefone"
+    email: "Email"
   address:
     new: "Novo endereço"
     add: "Adicionar endereço"

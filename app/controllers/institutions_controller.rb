@@ -2,7 +2,7 @@ class InstitutionsController < ApplicationController
   # GET /institutions
   # GET /institutions.json
   def index
-    @institutions = Institution.all
+    @institutions = Institution.all(:include => [:phones, :emails])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,6 +50,9 @@ class InstitutionsController < ApplicationController
         format.html { redirect_to institutions_path, :notice => t('institution.created') }
         format.json { render :json => @institution, :status => :created, :location => @institution }
       else
+        @institution.addresses.build
+        @institution.phones.build
+        @institution.emails.build
         format.html { render :action => "new" }
         format.json { render :json => @institution.errors, :status => :unprocessable_entity }
       end

@@ -11,4 +11,6 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :emails, :reject_if => lambda { |a| a[:address].blank? }, :allow_destroy => true
   
+  validates_presence_of :name
+  
 end

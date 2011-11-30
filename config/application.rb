@@ -32,6 +32,7 @@ module GestaoDeInstituicoes
 
     # JavaScript files you want as :defaults (application.js is always included).
     config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     config.i18n.default_locale = :pt
     # Configure the default encoding used in templates for Ruby 1.9.
