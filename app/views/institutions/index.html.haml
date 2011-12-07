@@ -1,27 +1,64 @@
+:javascript
+  $(document).ready(function(){
+    var oTable = $('.list').dataTable({
+      "iDisplayLength": -1,
+      "bAutoWidth": false,
+      "bJQueryUI": true,
+      "bSort": true,
+      "sDom": '<"H"lTfr>t<"F"ip>',
+      "oTableTools": {
+         "sSwfPath": "DataTables-1.8.1/media/swf/copy_cvs_xls_pdf.swf"
+      },
+      "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 4, 5, 6] }],
+        'oLanguage': {
+          'oPaginate': {
+            'sFirst': 'primeira',
+            'sLast': 'ultima',
+            'sNext': 'próxima',
+            'sPrevious': 'anterior'
+          },
+          'sInfo': 'exibindo de _START_ até _END_ do total de _TOTAL_ registros',          
+          'sInfoEmpty': "Mostrando de 0 até 0 de 0 registros",
+          'sEmptyTable': 'não há registros para exibir',
+          'sInfoFiltered': '- filtrando de _MAX_ registros',
+          'sInfoPostFix': '',
+          'sLengthMenu': 'exibe _MENU_ registros',
+          'sProcessing': 'processando',
+          'sSearch': 'filtrar',
+          'sZeroRecords': 'não há registros para exibir'
+        }
+    });
+  });
+
 .white-box-top
 .white-box-container
   .content
     %h1= t('institution.list')
-    = link_to t('institution.new'), new_institution_path
-    %table
-      %tr
-        %th= t('institution.name')
-        %th= t('institution.site')
-        %th= t('institution.email')
-        %th= t('institution.phone')
-        %th
-        %th
-        %th
-
-      - @institutions.each do |institution|
+    .actions 
+      = link_to t('institution.new'), new_institution_path
+    %table{:class => 'list'}
+      %thead
         %tr
-          %td= institution.name
-          %td= link_to 'acessar', institution.site
-          %td= institution.emails_as_html.html_safe
-          %td= institution.phones_as_html.html_safe
-          %td= link_to t('show'), institution
-          %td= link_to t('edit'), edit_institution_path(institution)
-          %td= link_to t('destroy'), institution, :confirm => t('are_you_sure'), :method => :delete
+          %th= t('institution.name')
+          %th= t('institution.site')
+          %th= t('institution.email')
+          %th= t('institution.phone')
+          %th{:style => 'width: 60px;'}
+          %th{:style => 'width: 50px;'}
+          %th{:style => 'width: 50px;'}
+      %tbody
+        - @institutions.each do |institution|
+          %tr
+            %td= institution.name
+            - if !institution.site.blank?
+              %td= link_to 'acessar', institution.site
+            - else
+              %td
+            %td= institution.emails_as_html.html_safe
+            %td= institution.phones_as_html.html_safe
+            %td= link_to t('show'), institution
+            %td= link_to t('edit'), edit_institution_path(institution)
+            %td= link_to t('destroy'), institution, :confirm => t('are_you_sure'), :method => :delete
 
     %br
 

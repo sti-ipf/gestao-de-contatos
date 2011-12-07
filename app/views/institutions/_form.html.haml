@@ -1,4 +1,4 @@
-= semantic_form_for @institution do |f|
+= semantic_form_for @institution, :html => { :multipart => true} do |f|
   -if @institution.errors.any?
     #error_explanation
       %ul
@@ -15,6 +15,9 @@
     = f.text_field :fundation_at, :id => :date_picker, :value => @institution.fundation_at.try(:strftime, '%d/%m/%Y')
   .field
     = f.input :site
+  %br
+  .field
+    = f.input :logo, :as => :file
   %br
   .gray_border
     %span

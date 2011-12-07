@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127231254) do
+ActiveRecord::Schema.define(:version => 20111206230258) do
 
   create_table "addresses", :force => true do |t|
     t.string   "description"
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(:version => 20111127231254) do
     t.string   "site"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "phones", :force => true do |t|

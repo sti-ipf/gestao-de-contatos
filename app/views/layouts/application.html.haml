@@ -2,10 +2,11 @@
 %html
   %head
     %title Gestao de Instituições
-    = stylesheet_link_tag "style", "blitzer/jquery-ui-1.8.16.custom.css"
+    = stylesheet_link_tag "style", "blitzer/jquery-ui-1.8.16.custom.css", 'jquery-ui-1.8.15.custom.css', 'datatable.css'
     - js_files = ['jquery.js', 'jquery.dataTables.min.js', 'rails.js', 'application.js', 'jquery-ui-1.8.16.custom.min.js']
     - js_files.each do |js_file|
       = javascript_include_tag js_file
+    = javascript_include_inputs
     = csrf_meta_tag
   %body
     .header

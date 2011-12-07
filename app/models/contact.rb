@@ -12,5 +12,7 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :emails, :reject_if => lambda { |a| a[:address].blank? }, :allow_destroy => true
   
   validates_presence_of :name
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png','image/gif'], :message => 'Permitidos apenas arquivos: .jpg, .gif e .png'
+
   
 end

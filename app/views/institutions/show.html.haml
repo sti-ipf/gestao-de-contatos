@@ -16,6 +16,8 @@
     %p
       %b= t('institution.site')
       = link_to @institution.site, @institution.site if !@institution.site.nil?
+    .avatar
+      = image_tag @institution.logo.url
     - if @institution.emails.count > 0
       .gray_border
         %span

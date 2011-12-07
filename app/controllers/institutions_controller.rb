@@ -2,7 +2,7 @@ class InstitutionsController < ApplicationController
   # GET /institutions
   # GET /institutions.json
   def index
-    @institutions = Institution.all(:include => [:phones, :emails])
+    @institutions = Institution.all(:include => [:phones, :emails], :order => 'name ASC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -90,6 +90,9 @@ class InstitutionsController < ApplicationController
 protected
 
   def format_date
-    params[:institution][:fundation_at] = Date.strptime(params[:institution][:fundation_at], '%d/%m/%Y') if !params[:institution][:fundation_at].blank?
+    regex = /\d{2}\/\d{2}\/\d{4}/
+    if !params[:institution][:fundation_at].blank?
+      params[:institution][:fundation_at] = Date.strptime(params[:institution][:fundation_at], '%d/%m/%Y') if (params[:institution][:fundation_at] =~ regex)
+    end
   end
 end

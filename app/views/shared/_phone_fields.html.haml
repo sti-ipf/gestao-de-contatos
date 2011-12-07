@@ -1,6 +1,6 @@
 .fields
   .field
-    = f.input :number
+    = f.input :number, :mask => '99-9999-9999', :as => :string
   .field
     - if f.object_name.include?('institution')
       - collection = Phone::TYPES_FOR_INSTITUTION
