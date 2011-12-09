@@ -14,5 +14,21 @@ class Contact < ActiveRecord::Base
   validates_presence_of :name
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png','image/gif'], :message => 'Permitidos apenas arquivos: .jpg, .gif e .png'
 
-  
+  def emails_as_html
+    html = ''
+    self.emails.each do |e|
+      address = e.address.downcase
+      html << "#{address}</br>"
+    end
+    html
+  end
+
+  def phones_as_html
+    html = ''
+    self.phones.each do |p|
+      html << "#{p.number}</br>"
+    end
+    html
+  end
+
 end

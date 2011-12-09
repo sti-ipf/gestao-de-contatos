@@ -86,29 +86,21 @@ a:hover{text-decoration: underline;}
 }
 
 .white-box {
-    margin: 20px 0;
+  margin: 20px 0;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  
+  background: none repeat scroll 0 0 #FFFFFF;
 }
-.white-box-top {
-    background-image: url("/images/white-box-top.png");
-    height: 21px;
-    margin: 0;
-    padding: 0;
-    width: 960px;
-}
-.white-box .white-box-container {
-    background: url("/images/white-box-mid.png") repeat scroll 0 0 transparent;
-}
-.white-box-bot {
-    background-image: url("/images/white-box-bot.png");
-    height: 24px;
-    margin: 0;
-    padding: 0;
-    width: 960px;
-}
+
 
 .wrapper {
     margin: 0 auto;
-    width: 960px;
+    width: 98%;
 }
 
 .white-box-container .content{ padding: 20px;}
@@ -295,11 +287,12 @@ input[type="submit"], .actions a, a.link_as_button{
   color: #FFFFFF;
   display: block;
   font-size: 12px;
-  height: 25px;
+  height: auto;
   padding: 0 0 2px;
   text-align: center;
   text-shadow: 0 1px 1px #264D7D;
-  width: 110px;
+  width: auto;
+  padding: 5px;
   border:0;
   margin:auto;
   clear: both;
